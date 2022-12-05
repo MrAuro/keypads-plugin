@@ -42,71 +42,16 @@ public class Create implements CommandExecutor {
 
                     switch (block.getState().getBlockData().getAsString().split("\\[")[1].split("=")[1].split(",")[0]) {
                         case "north" -> {
-                            Location location = new Location(world, block.getLocation().getX() - 0.5, block.getLocation().getY() - 0.5, block.getLocation().getZ() + 0.90);
-                            ArmorStand armorStand = (ArmorStand) world.spawnEntity(location, EntityType.ARMOR_STAND);
-                            armorStand.setCustomName(code);
-                            armorStand.setGravity(false);
-                            armorStand.setRotation(0, 0);
-                            armorStand.setSmall(true);
-                            armorStand.setInvulnerable(true);
-                            armorStand.setBasePlate(false);
-                            armorStand.addDisabledSlots(org.bukkit.inventory.EquipmentSlot.values());
-
-                            armorStand.setVisible(false);
-
-                            ItemStack skullItem = NBTEditor.getHead("http://textures.minecraft.net/texture/2bc1284d273688a9613bffb13171e37b82f0d33be0f9c2fde17b7bec9e25f4");
-                            SkullMeta skullMeta = (SkullMeta) skullItem.getItemMeta();
-                            armorStand.setHelmet(skullItem);
+                            createKeypad(world, block.getLocation().getX() - 0.5, block, block.getLocation().getZ() + 0.90, code, 0);
                         }
                         case "south" -> {
-                            Location location = new Location(world, block.getLocation().getX() + 1.5, block.getLocation().getY() - 0.5, block.getLocation().getZ() + 0.10);
-                            ArmorStand armorStand = (ArmorStand) world.spawnEntity(location, EntityType.ARMOR_STAND);
-                            armorStand.setCustomName(code);
-                            armorStand.setGravity(false);
-                            armorStand.setRotation(180, 0);
-                            armorStand.setSmall(true);
-                            armorStand.setInvulnerable(true);
-                            armorStand.setBasePlate(false);
-                            armorStand.addDisabledSlots(org.bukkit.inventory.EquipmentSlot.values());
-
-                            armorStand.setVisible(false);
-                            ItemStack skullItem = NBTEditor.getHead("http://textures.minecraft.net/texture/2bc1284d273688a9613bffb13171e37b82f0d33be0f9c2fde17b7bec9e25f4");
-                            SkullMeta skullMeta = (SkullMeta) skullItem.getItemMeta();
-                            armorStand.setHelmet(skullItem);
+                            createKeypad(world, block.getLocation().getX() + 1.5, block, block.getLocation().getZ() + 0.10, code, 180);
                         }
                         case "east" -> {
-                            Location location = new Location(world, block.getLocation().getX() + 0.10, block.getLocation().getY() - 0.5, block.getLocation().getZ() - 0.5);
-                            ArmorStand armorStand = (ArmorStand) world.spawnEntity(location, EntityType.ARMOR_STAND);
-                            armorStand.setCustomName(code);
-                            armorStand.setGravity(false);
-                            armorStand.setRotation(90, 0);
-                            armorStand.setSmall(true);
-                            armorStand.setInvulnerable(true);
-                            armorStand.setBasePlate(false);
-                            armorStand.addDisabledSlots(org.bukkit.inventory.EquipmentSlot.values());
-
-                            armorStand.setVisible(false);
-                            ItemStack skullItem = NBTEditor.getHead("http://textures.minecraft.net/texture/2bc1284d273688a9613bffb13171e37b82f0d33be0f9c2fde17b7bec9e25f4");
-                            SkullMeta skullMeta = (SkullMeta) skullItem.getItemMeta();
-                            armorStand.setHelmet(skullItem);
+                            createKeypad(world, block.getLocation().getX() + 0.10, block, block.getLocation().getZ() - 0.5, code, 90);
                         }
                         case "west" -> {
-                            Location location = new Location(world, block.getLocation().getX() + 0.90, block.getLocation().getY() - 0.5, block.getLocation().getZ() + 1.5);
-                            ArmorStand armorStand = (ArmorStand) world.spawnEntity(location, EntityType.ARMOR_STAND);
-                            armorStand.setCustomName(code);
-                            armorStand.setGravity(false);
-                            armorStand.setRotation(270, 0);
-                            armorStand.setSmall(true);
-                            armorStand.setInvulnerable(true);
-                            armorStand.setBasePlate(false);
-                            armorStand.setVisible(false);
-                            armorStand.addDisabledSlots(org.bukkit.inventory.EquipmentSlot.values());
-
-
-                            ItemStack skullItem = NBTEditor.getHead("http://textures.minecraft.net/texture/2bc1284d273688a9613bffb13171e37b82f0d33be0f9c2fde17b7bec9e25f4");
-                            SkullMeta skullMeta = (SkullMeta) skullItem.getItemMeta();
-                            armorStand.setHelmet(skullItem);
-
+                            createKeypad(world, block.getLocation().getX() + 0.90, block, block.getLocation().getZ() + 1.5, code, 270);
                         }
                     }
                 } else {
@@ -116,5 +61,23 @@ public class Create implements CommandExecutor {
         }
 
         return true;
+    }
+
+    private static void createKeypad(World world, double x, Block block, double z, String code, int yaw) {
+        Location location = new Location(world, x, block.getLocation().getY() - 0.5, z);
+        ArmorStand armorStand = (ArmorStand) world.spawnEntity(location, EntityType.ARMOR_STAND);
+        armorStand.setCustomName(code);
+        armorStand.setGravity(false);
+        armorStand.setRotation(yaw, 0);
+        armorStand.setSmall(true);
+        armorStand.setInvulnerable(true);
+        armorStand.setBasePlate(false);
+        armorStand.addDisabledSlots(org.bukkit.inventory.EquipmentSlot.values());
+
+        armorStand.setVisible(false);
+
+        ItemStack skullItem = NBTEditor.getHead("http://textures.minecraft.net/texture/2bc1284d273688a9613bffb13171e37b82f0d33be0f9c2fde17b7bec9e25f4");
+        SkullMeta skullMeta = (SkullMeta) skullItem.getItemMeta();
+        armorStand.setHelmet(skullItem);
     }
 }
