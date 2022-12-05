@@ -23,16 +23,6 @@ public final class Keypads extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this, this);
     }
 
-
-    @EventHandler
-    public void onPlayerInteractEvent(org.bukkit.event.player.PlayerInteractEvent event) {
-        if (event.getClickedBlock() != null) {
-            if (event.getClickedBlock().getType() == Material.IRON_DOOR) {
-                event.getPlayer().sendMessage("A");
-            }
-        }
-    }
-
     @EventHandler
     public void onPlayerInteractAtEntityEvent(org.bukkit.event.player.PlayerInteractAtEntityEvent event) {
         if (event.getRightClicked() instanceof org.bukkit.entity.ArmorStand armorStand) {
