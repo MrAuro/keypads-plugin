@@ -1,0 +1,12 @@
+name: Keypads
+version: '${project.version}'
+main: dev.mrauro.keypads.Keypads
+api-version: 1.19
+authors: [ Auro ]
+description: Allows you to place keypads next to doors with a code
+website: https://mrauro.dev
+commands:
+  create:
+    description: Creates a keypad
+    usage: /create <code>
+    permission: keypads.create
