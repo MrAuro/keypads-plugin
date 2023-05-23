@@ -1,5 +1,7 @@
 # keypads-plugin
-Minecraft plugin to place keypads next to iron doors. This is my first Minecraft plugin.
+Minecraft plugin to place keypads next to iron doors. The player can interact with the entity and will prompt them with a inventory GUI.
+
+![Gif](./keypad-op.gif)
 
 ## Usage
 
